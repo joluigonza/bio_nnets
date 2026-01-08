@@ -1,4 +1,8 @@
 
+include("nnet_setup.jl")
+
+##############################################
+
 R"""
 
 x=matrix(0,K,n);
@@ -72,7 +76,7 @@ this_fac <- (dy)/(dx+ 10^(-10)); # avoid dividing by 0
 
 
 R"""
-footol <- 0.85   #0.75
+footol <- 0.88 #0.85   #0.75
 
 gene_inds <- vector()
 group_inds <- vector()
@@ -91,9 +95,8 @@ ng <- length(gene_inds)
 
 """
 
-@rget ng
 
-@rget group_inds gene_inds footol
+@rget  ng
 
-@rget label treat_val group
 
+###############################

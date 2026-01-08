@@ -22,6 +22,8 @@ end
 
 part=""
 
+part="limma"
+
 serialize("forWs1_"*label*treat_val*group_label*part, forWs1)
 serialize("forBs1_"*label*treat_val*group_label*part, forBs1)
 serialize("forWs2_"*label*treat_val*group_label*part, forWs2)

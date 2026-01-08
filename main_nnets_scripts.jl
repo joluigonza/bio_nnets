@@ -64,7 +64,10 @@ thisgenes <- df[[1]][gene_inds[1:10]]
 ############################################################
 ################################# interval errors
 
-for k=1:10
+REs=zeros(ng,1);
+SEs=zeros(ng,1);
+
+for k=1:ng
 
     trainin= copy(k)
     
@@ -91,6 +94,9 @@ for k=1:10
     println("z2: $thisz2")  
 
     thissum1= int_dist(y,z2);
+    println("RE:  $thissum1")
+
+    REs[k]= thissum1
 
     o2= ∅;
     for i=1:ntrain
@@ -102,7 +108,83 @@ for k=1:10
     thiso2= myround_i(o2,3); 
     println("o2: $thiso2")  
     thissum2= int_dist(y,o2);
+    println("SE:  $thissum2")
 
+    SEs[k]= thissum2
+
+    #println(thisgenes[k]*"&"*"$thisy"*"&"*"$thisz2"*"&"*"$thissum1"*"&"*"$thiso2"*"&"*"$thissum2")
+
+
+    
+end
+
+thismean= round(mean(REs),digits=3)
+thisvar= round(var(REs),digits=3)
+println("($thismean,$thisvar)")
+
+
+thismean= round(mean(SEs),digits=3)
+thisvar= round(var(SEs),digits=3)
+println("($thismean,$thisvar)")
+
+
+#####################################################################################
+####################################################### latex
+
+
+for k=1:10
+
+    trainin= copy(k)
+    
+    
+    println("\\hline")
+    
+    println("")
+
+    y=Y[trainin];
+
+    thisy= myround_i(y,3);
+
+
+    ############################################
+    
+    
+    z2= ∅;
+    for i=1:ntrain
+    a1, z1, a2, thisz2=forward_pass_i(coverX[:,i], forWs1[k], forBs1[k], forWs2[k], forBs2[k]);
+    z2= z2[1] ∪ thisz2[1];
+    end
+    
+        
+    thisz2= myround_i(z2,3); 
+    
+
+    thissum1= int_dist(y,z2);
+    
+
+    o2= ∅;
+    for i=1:ntrain
+    ~, ~, ~, thiso2=forward_pass_i(coverY[:,i], forWs1[k], forBs1[k], forWs2[k], forBs2[k]);
+    o2= o2[1] ∪ thiso2[1];
+    end
+      
+        
+    thiso2= myround_i(o2,3); 
+    
+
+    thissum2= int_dist(y,o2);
+    
+
+    
+    println(thisgenes[k]*"&"*"$thisy"*"&"*"$thisz2"*"&"*"$thissum1"*"&"*"$thiso2"*"&"*"$thissum2")
+
+
+    println("")
+    
+    println("\\\\")
+
+    
+    println("")
     
 end
     
@@ -373,6 +455,14 @@ println("pertdist2 : $pertdist2")
 
 
 coreng= group_inds[1]+group_inds[2]
+
+
+coreng= group_inds[1]
+
+
+coreng= ng
+
+########################################################
 
 dymErrs= zeros(coreng,1)
 

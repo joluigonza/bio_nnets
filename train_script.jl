@@ -17,18 +17,21 @@ forConv = zeros(ng,1);
 ######################################################
 ### local parallelization
 
-# mule_num=0;
+mule_num=1;
 
-# parts_num=3;
+parts_num=2;
 
-# part0= Int(floor(ng/parts_num))
+part0= Int(floor(ng/parts_num))
 
-# ind0= (1 + mule_num*part0)
-# ind1= (mule_num + 1)*part0  + Int(floor((mule_num + 1)/parts_num))*(ng%parts_num)
+ind0= (1 + mule_num*part0)
+ind1= (mule_num + 1)*part0  + Int(floor((mule_num + 1)/parts_num))*(ng%parts_num)
 
 ###############################################
-ind0=0;
+
+ind0=1;
 ind1=ng;
+
+#############################################################
 
 for trainin= ind0: ind1
     

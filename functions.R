@@ -564,3 +564,27 @@ group_gene_inds <- function(label, treat, G,dx,dy,i_stds,footol, this_fac){
   
 }
 
+############################################################
+
+
+
+all_group_gene_inds <- function(group, footol){
+  
+  
+  gene_inds <- vector()
+  group_inds <- vector()
+  
+  for (thisg in group){
+    
+    thisgene_inds <- group_gene_inds(label,treat,thisg,dx,dy,i_stds,footol,this_fac)
+    group_inds <- c(group_inds, length(thisgene_inds))
+    gene_inds <- c(gene_inds, thisgene_inds)
+    
+  } 
+  
+  
+  
+  return (gene_inds)
+}
+  
+  

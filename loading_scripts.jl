@@ -1,12 +1,27 @@
 ########################################### deserialize data
+@rget group label treat_val
 
+############################################################
 
 group_label=""
 for g in group
     group_label= group_label*g
 end
 
+this_gene_inds = deserialize("gene_inds_"*label*treat_val*group_label)
+
+##############################################################
+
+group_label=""
+for g in group
+    group_label= group_label*g
+end
+
+######
+
 part=""
+
+part="limma"
 
 forWs1 = deserialize("forWs1_"*label*treat_val*group_label*part)
 forBs1 = deserialize("forBs1_"*label*treat_val*group_label*part)
@@ -16,10 +31,7 @@ forTols = deserialize("forTols_"*label*treat_val*group_label*part)
 forEnds = deserialize("forEnds_"*label*treat_val*group_label*part)
 forConv = deserialize("forConv_"*label*treat_val*group_label*part)
 
-############################################################
-
-this_gene_inds = deserialize("gene_inds_"*label*treat_val*group_label)
-
+###################################################################################
 ####################################################################################
 ### if local parallization 
 
@@ -38,10 +50,7 @@ forTols = deserialize("forTols_"*label*treat_val*group_label*part)
 forEnds = deserialize("forEnds_"*label*treat_val*group_label*part)
 forConv = deserialize("forConv_"*label*treat_val*group_label*part)
 
-###################################
-
-this_gene_inds = deserialize("gene_inds_"*label*treat_val*group_label)
-
+ng= length(forBs2)
 ###################################
 
 parts_num=3;

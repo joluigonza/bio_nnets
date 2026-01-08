@@ -12,7 +12,7 @@ using RCall
 using Statistics
 using Random, Distributions
 
-using PyPlot
+#using PyPlot
 
 using TickTock
 
@@ -31,5 +31,4 @@ source(file="functions.R")
 """
 
 include("nnet_setup.jl")
-
 #########################################################
